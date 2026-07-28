@@ -8,6 +8,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <link
+      rel="preload"
+      as="image"
+      href="img/layer-1.png"
+      fetchpriority="high"
+    />
+
+    <link rel="preload" as="image" href="img/layer-4.png" />
+
     <!-- ==============================================
          TITLE
     =============================================== -->
@@ -30,27 +39,44 @@
 
     <header class="hero">
       <div class="hero-layer layer-1">
-        <img src="img/layer-1.png" alt="" />
+        <img
+          src="img/layer-1.png"
+          alt=""
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
       </div>
 
       <div class="hero-layer layer-2">
-        <img src="img/layer-2.png" alt="" />
+        <img src="img/layer-2.png" alt="" loading="eager" decoding="async" />
       </div>
 
       <div class="hero-layer layer-3">
-        <img src="img/layer-3.png" alt="" />
+        <img src="img/layer-3.png" alt="" loading="eager" decoding="async" />
       </div>
 
       <div class="hero-layer layer-4">
-        <img src="img/layer-4.png" alt="" />
+        <img src="img/layer-4.png" alt="" loading="eager" decoding="async" />
       </div>
 
       <div class="hero-overlay"></div>
 
       <div class="hero-content">
-        <h1>Александра Брагинская</h1>
+        <div class="hero-content">
+          <h1>Александра Брагинская</h1>
 
-        <p>Художник • Искусствовед • Участник международных выставок</p>
+          <p>Художник • Искусствовед • Участник международных выставок</p>
+
+          <button
+            class="btn motion-permission-button"
+            id="motionPermissionButton"
+            type="button"
+            hidden
+          >
+            Включить движение фона
+          </button>
+        </div>
       </div>
     </header>
 
@@ -99,30 +125,92 @@
            PROJECTS
       =========================================== -->
 
+      <!-- ==========================================
+     PROJECTS
+=========================================== -->
+
       <section id="projects">
         <div class="container">
           <h2>Выставки и достижения</h2>
 
-          <div class="cards">
-            <article class="card">
-              <h3>АРТ РОССИЯ</h3>
-              <p>2023 и 2025, Гостиный Двор</p>
-            </article>
+          <div class="achievements-carousel" data-carousel>
+            <button
+              class="carousel-button carousel-button-prev"
+              type="button"
+              aria-label="Предыдущая выставка"
+              data-carousel-prev
+            >
+              ←
+            </button>
 
-            <article class="card">
-              <h3>МОРЕ ВНУТРИ</h3>
-              <p>Приглашённый художник фестиваля современного искусства</p>
-            </article>
+            <div class="achievements-viewport" data-carousel-viewport>
+              <div class="achievements-track" data-carousel-track>
+                <article class="achievement-card">
+                  <img
+                    class="achievement-icon"
+                    src="img/achievements/art-russia.svg"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
 
-            <article class="card">
-              <h3>Expo in China</h3>
-              <p>Международная выставка</p>
-            </article>
+                  <h3>АРТ РОССИЯ</h3>
 
-            <article class="card">
-              <h3>Международные проекты</h3>
-              <p>Саудовская Аравия, Цюрих, Париж, Беларусь</p>
-            </article>
+                  <p>2023 и 2025, Гостиный Двор</p>
+                </article>
+
+                <article class="achievement-card">
+                  <img
+                    class="achievement-icon"
+                    src="img/achievements/sea-inside.svg"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+
+                  <h3>МОРЕ ВНУТРИ</h3>
+
+                  <p>Приглашённый художник фестиваля современного искусства</p>
+                </article>
+
+                <article class="achievement-card">
+                  <img
+                    class="achievement-icon"
+                    src="img/achievements/china.svg"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+
+                  <h3>Expo in China</h3>
+
+                  <p>Международная выставка</p>
+                </article>
+
+                <article class="achievement-card">
+                  <img
+                    class="achievement-icon"
+                    src="img/achievements/international.svg"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+
+                  <h3>Международные проекты</h3>
+
+                  <p>Саудовская Аравия, Цюрих, Париж, Беларусь</p>
+                </article>
+              </div>
+            </div>
+
+            <button
+              class="carousel-button carousel-button-next"
+              type="button"
+              aria-label="Следующая выставка"
+              data-carousel-next
+            >
+              →
+            </button>
           </div>
         </div>
       </section>
@@ -224,5 +312,6 @@
     <script src="js/gallery.js"></script>
     <script src="js/news.js"></script>
     <script src="js/no-copy.js"></script>
+    <script src="js/carousel.js"></script>
   </body>
 </html>

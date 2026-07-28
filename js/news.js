@@ -46,9 +46,13 @@ function createNewsCard(id, newsItem) {
   article.className = "news-card";
 
   const image = document.createElement("img");
+
   image.src = `img/news/${id}.jpg`;
   image.alt = newsItem.title;
+
   image.loading = "lazy";
+  image.decoding = "async";
+  image.fetchPriority = "low";
   image.draggable = false;
 
   image.addEventListener("error", () => {

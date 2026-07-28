@@ -1,7 +1,3 @@
-/* =====================================================
-   RESET
-===================================================== */
-
 * {
   margin: 0;
   padding: 0;
@@ -10,6 +6,15 @@
 
 [hidden] {
   display: none !important;
+}
+
+#about,
+#projects,
+#works,
+#news,
+#contacts {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
 }
 
 /* =====================================================
@@ -142,6 +147,119 @@ h2 {
 
   &:active {
     transform: translateY(-1px);
+  }
+}
+
+/* =====================================================
+   ACHIEVEMENTS CAROUSEL
+===================================================== */
+
+.achievements-carousel {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+
+  gap: 20px;
+}
+
+.achievements-viewport {
+  min-width: 0;
+
+  overflow: hidden;
+
+  touch-action: pan-y;
+}
+
+.achievements-track {
+  display: flex;
+
+  gap: 25px;
+
+  transform: translate3d(0, 0, 0);
+
+  transition: transform 0.45s ease;
+
+  will-change: transform;
+}
+
+.achievement-card {
+  flex: 0 0 calc((100% - 75px) / 4);
+
+  min-width: 0;
+  padding: 28px;
+
+  background-color: var(--background-color);
+
+  border-radius: 15px;
+
+  box-shadow: 0 4px 20px rgb(0 0 0 / 0.08);
+
+  text-align: center;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+
+  .achievement-icon {
+    display: block;
+
+    width: 72px;
+    height: 72px;
+
+    margin: 0 auto 20px;
+
+    object-fit: contain;
+  }
+
+  h3 {
+    margin-bottom: 10px;
+
+    color: var(--primary-color);
+
+    line-height: 1.3;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 10px 30px rgb(0 0 0 / 0.12);
+  }
+}
+
+.carousel-button {
+  display: grid;
+  place-items: center;
+
+  width: 50px;
+  height: 50px;
+
+  flex-shrink: 0;
+
+  background-color: var(--primary-color);
+
+  border: none;
+  border-radius: 50%;
+
+  color: var(--white-text-color);
+
+  font-size: 1.4rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease,
+    box-shadow 0.25s ease;
+
+  &:hover {
+    transform: scale(1.08);
+
+    box-shadow: 0 7px 18px rgb(0 0 0 / 0.15);
+  }
+
+  &:active {
+    transform: scale(0.96);
   }
 }
 

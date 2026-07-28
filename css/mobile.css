@@ -3,6 +3,10 @@
 ===================================================== */
 
 @media (max-width: 992px) {
+  .achievement-card {
+    flex-basis: calc((100% - 25px) / 2);
+  }
+
   /* Hero */
 
   .hero-content {
@@ -36,6 +40,29 @@
 ===================================================== */
 
 @media (max-width: 768px) {
+  .achievements-carousel {
+    grid-template-columns: 42px minmax(0, 1fr) 42px;
+
+    gap: 8px;
+  }
+
+  .achievement-card {
+    flex-basis: 100%;
+
+    padding: 22px 18px;
+
+    .achievement-icon {
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  .carousel-button {
+    width: 42px;
+    height: 42px;
+
+    font-size: 1.15rem;
+  }
   /* Gallery */
 
   .gallery {

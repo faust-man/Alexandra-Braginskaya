@@ -26,16 +26,24 @@
   inset: 0;
 
   overflow: hidden;
+
   pointer-events: none;
 }
 
 .hero-layer img {
+  --parallax-x: 0px;
+  --parallax-y: 0px;
+
   position: absolute;
 
   left: 50%;
   bottom: 0;
 
-  transform: translate(-50%, var(--base-y));
+  transform: translate3d(
+    calc(-50% + var(--parallax-x)),
+    calc(var(--base-y) + var(--parallax-y)),
+    0
+  );
 
   width: max(100vw, 100%);
   height: auto;
@@ -48,7 +56,6 @@
 
   will-change: transform;
 }
-
 /* ---------- Слои ---------- */
 
 .layer-1 {
