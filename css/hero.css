@@ -56,6 +56,42 @@
 
   will-change: transform;
 }
+
+.motion-permission-button {
+  display: none;
+
+  margin: 22px auto 0;
+  padding: 12px 24px;
+
+  background-color: var(--background-color);
+
+  border: none;
+  border-radius: 50px;
+
+  color: var(--primary-color);
+
+  font: inherit;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.motion-status {
+  margin-top: 12px;
+
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .motion-permission-button {
+    display: block;
+  }
+}
+
+[hidden] {
+  display: none !important;
+}
+
 /* ---------- Слои ---------- */
 
 .layer-1 {
