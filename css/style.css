@@ -1,7 +1,15 @@
+/* =====================================================
+   RESET
+===================================================== */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
 }
 
 /* =====================================================
@@ -42,6 +50,11 @@ img {
   -webkit-user-drag: none;
 }
 
+button,
+a {
+  font: inherit;
+}
+
 .container {
   width: 100%;
   max-width: 1400px;
@@ -77,13 +90,58 @@ h2 {
 
   color: var(--primary-color);
 
-  text-decoration: none;
   font-weight: bold;
+  text-decoration: none;
 
-  transition: transform 0.3s;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
 
   &:hover {
     transform: translateY(-3px);
+  }
+}
+
+/* =====================================================
+   SHOW MORE BUTTONS
+===================================================== */
+
+.show-more-button {
+  display: none;
+
+  width: 100%;
+  max-width: 320px;
+
+  margin: 30px auto 0;
+  padding: 14px 25px;
+
+  background-color: var(--primary-color);
+
+  border: none;
+  border-radius: 50px;
+
+  color: var(--white-text-color);
+
+  font-size: 1rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease,
+    box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+
+    opacity: 0.9;
+
+    box-shadow: 0 8px 20px rgb(0 0 0 / 0.12);
+  }
+
+  &:active {
+    transform: translateY(-1px);
   }
 }
 
@@ -119,16 +177,36 @@ nav {
   a {
     color: var(--primary-color);
 
-    text-decoration: none;
     font-weight: 600;
+    text-decoration: none;
 
     transition:
-      color 0.2s,
-      opacity 0.2s;
+      transform 0.25s ease,
+      opacity 0.25s ease;
 
     &:hover {
+      transform: translateY(-2px);
+
       opacity: 0.8;
     }
+  }
+}
+
+/* =====================================================
+   ABOUT
+===================================================== */
+
+#about {
+  p {
+    max-width: 1000px;
+
+    margin: 0 auto 20px;
+
+    font-size: 1.05rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
   }
 }
 
@@ -152,10 +230,20 @@ nav {
 
   box-shadow: 0 4px 20px rgb(0 0 0 / 0.08);
 
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+
   h3 {
     margin-bottom: 10px;
 
     color: var(--primary-color);
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 10px 30px rgb(0 0 0 / 0.12);
   }
 }
 
@@ -183,8 +271,8 @@ nav {
   text-align: center;
 
   transition:
-    transform 0.25s,
-    box-shadow 0.25s;
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 
   h3 {
     color: var(--primary-color);
@@ -204,39 +292,18 @@ nav {
     border-radius: 10px;
 
     object-fit: contain;
+
+    transition: transform 0.3s ease;
   }
 
   &:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
 
-    box-shadow: 0 8px 20px rgb(0 0 0 / 0.12);
-  }
-}
+    box-shadow: 0 10px 25px rgb(0 0 0 / 0.12);
 
-#showMoreBtn {
-  display: none;
-
-  padding: 14px 20px;
-
-  background-color: var(--primary-color);
-
-  border: none;
-  border-radius: 50px;
-
-  color: var(--white-text-color);
-
-  font-size: 1rem;
-
-  cursor: pointer;
-
-  transition:
-    transform 0.2s,
-    opacity 0.2s;
-
-  &:hover {
-    transform: translateY(-2px);
-
-    opacity: 0.9;
+    img {
+      transform: scale(1.03);
+    }
   }
 }
 
@@ -246,12 +313,16 @@ nav {
 
 .news {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 
-  gap: 20px;
+  gap: 25px;
 }
 
 .news-card {
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
 
   background-color: white;
 
@@ -259,25 +330,73 @@ nav {
 
   box-shadow: 0 4px 15px rgb(0 0 0 / 0.08);
 
-  h3 {
-    margin-bottom: 10px;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 
-    color: var(--primary-color);
+  img {
+    display: block;
+
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    object-fit: cover;
   }
 
-  small {
-    color: #777;
+  .news-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    height: 100%;
+
+    padding: 22px;
+  }
+
+  time {
+    margin-bottom: 8px;
+
+    color: rgb(66 69 48 / 0.7);
+
+    font-size: 0.9rem;
+  }
+
+  h3 {
+    margin-bottom: 12px;
+
+    color: var(--primary-color);
+
+    font-size: 1.35rem;
+    line-height: 1.3;
   }
 
   p {
-    margin: 15px 0;
+    margin-bottom: 20px;
   }
 
   a {
+    margin-top: auto;
+
     color: var(--primary-color);
 
+    font-weight: 700;
     text-decoration: none;
-    font-weight: bold;
+
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease;
+
+    &:hover {
+      transform: translateX(3px);
+
+      opacity: 0.7;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 10px 30px rgb(0 0 0 / 0.12);
   }
 }
 
@@ -305,11 +424,11 @@ nav {
     text-decoration: none;
 
     transition:
-      transform 0.25s,
-      opacity 0.25s;
+      transform 0.25s ease,
+      opacity 0.25s ease;
 
     &:hover {
-      transform: translateY(-2px);
+      transform: translateY(-3px);
 
       opacity: 0.9;
     }
@@ -344,51 +463,4 @@ footer {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.card,
-.work,
-.news-card,
-.btn,
-.contacts a,
-nav a {
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    background-color 0.25s ease,
-    color 0.25s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-
-  box-shadow: 0 10px 30px rgb(0 0 0 / 12%);
-}
-
-.work:hover {
-  transform: translateY(-4px);
-
-  box-shadow: 0 10px 25px rgb(0 0 0 / 12%);
-}
-
-.work img {
-  transition: transform 0.3s ease;
-}
-
-.work:hover img {
-  transform: scale(1.03);
-}
-
-.news-card:hover {
-  transform: translateY(-5px);
-
-  box-shadow: 0 10px 30px rgb(0 0 0 / 12%);
-}
-
-.contacts a:hover {
-  transform: translateY(-3px);
-}
-
-.contacts a:hover {
-  transform: translateY(-3px);
 }

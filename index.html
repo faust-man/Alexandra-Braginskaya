@@ -51,8 +51,6 @@
         <h1>Александра Брагинская</h1>
 
         <p>Художник • Искусствовед • Участник международных выставок</p>
-
-        <a class="btn" href="#works"> Смотреть работы </a>
       </div>
     </header>
 
@@ -139,7 +137,14 @@
 
           <div class="gallery" id="gallery"></div>
 
-          <button id="showMoreBtn" hidden>Показать ещё ▼</button>
+          <button
+            class="show-more-button"
+            id="showMoreBtn"
+            type="button"
+            hidden
+          >
+            Показать ещё
+          </button>
         </div>
       </section>
 
@@ -154,6 +159,15 @@
           <div class="news" id="newsContainer">
             <p>Загрузка новостей...</p>
           </div>
+
+          <button
+            class="show-more-button"
+            id="newsShowMore"
+            type="button"
+            hidden
+          >
+            Показать ещё
+          </button>
         </div>
       </section>
 
@@ -169,7 +183,7 @@
             <a
               href="https://vk.com/alexatorsher"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
             >
               VK
             </a>
@@ -177,7 +191,7 @@
             <a
               href="https://t.me/artalexatorsher"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
             >
               Telegram
             </a>
@@ -185,7 +199,7 @@
             <a
               href="https://dzen.ru/a/aH1S5kycwwCSteDz"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
             >
               Яндекс Дзен
             </a>
@@ -208,6 +222,7 @@
 
     <script src="js/paralax.js"></script>
     <script src="js/gallery.js"></script>
+    <script src="js/news.js"></script>
     <script src="js/no-copy.js"></script>
   </body>
 </html>
