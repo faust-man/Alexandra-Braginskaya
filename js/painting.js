@@ -12,7 +12,7 @@ async function loadPainting() {
 
   document.getElementById("price").textContent = work.price;
 
-  document.getElementById("year").textContent = work.year;
+  document.getElementById("year").textContent = work.year ?? "Не указан";
 
   document.getElementById("materials").textContent = work.materials;
 
