@@ -10,6 +10,8 @@ import "../styles/paint-style.css";
 export function PaintingPage() {
   const id = new URLSearchParams(location.search).get("id");
   const work = paintings.find((w) => w.id === id);
+  const pricePrefix = /^цена(?=\s|:|$)\s*:?\s*/iu;
+  const hasPrice = work ? pricePrefix.test(work.price) : false;
   const image = useRef<HTMLImageElement>(null);
   const [lens, setLens] = useState<CSSProperties>({ display: "none" });
   useEffect(() => {
@@ -78,7 +80,10 @@ export function PaintingPage() {
                 ["Год", work.year ?? "Не указан"],
                 ["Материал", work.materials],
                 ["Размер", work.size],
-                ["Статус", work.price],
+                [
+                  hasPrice ? "Цена" : "Статус",
+                  hasPrice ? work.price.replace(pricePrefix, "") : work.price,
+                ],
               ].map(([label, value]) => (
                 <p key={label}>
                   <strong>{label}:</strong> <span>{value}</span>
