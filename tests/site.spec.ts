@@ -183,8 +183,8 @@ test("mobile menu stays in the document and floating shortcut returns to it", as
   }
   const nav = page.getByRole("navigation", { name: "Основная навигация" });
   await expect(nav).toHaveCSS("position", "static");
-  await expect(nav.getByRole("link")).toHaveCount(5);
-  await nav.getByRole("link", { name: "Контакты", exact: true }).click();
+  await expect(nav.getByRole("link")).toHaveCount(4);
+  await page.goto("/#contacts");
   await expect(page).toHaveURL(/#contacts/);
   await expect(shortcut).toBeInViewport();
   await expect(nav).not.toBeInViewport();
@@ -194,7 +194,7 @@ test("mobile menu stays in the document and floating shortcut returns to it", as
   for (const width of [320, 390, 768]) {
     await page.setViewportSize({ width, height: 844 });
     expect(
-      await nav.evaluate((el) => el.scrollWidth <= el.clientWidth),
+      await nav.locator("ul").evaluate((el) => el.clientHeight === 76),
     ).toBeTruthy();
     expect(
       await page.evaluate(

@@ -192,11 +192,15 @@ h2 {
   }
   #site-navigation ul {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    overflow: visible;
-    gap: 4px 16px;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow: hidden;
+    gap: 16px;
     padding: 16px;
+  }
+  #site-navigation li {
+    flex: 0 0 auto;
+    white-space: nowrap;
   }
   #site-navigation a {
     display: flex;

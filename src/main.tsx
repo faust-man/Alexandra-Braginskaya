@@ -2,6 +2,7 @@ import { registerImageCache } from "./image-cache";
 import { useEffect, useState, type ReactNode } from "react";
 import { createRoot } from "react-dom/client";
 import { Editorial } from "./components/Editorial";
+import { Navigation } from "./components/Navigation";
 import { Hero } from "./components/Hero";
 import { Carousel } from "./components/Carousel";
 import { PaintingPage } from "./components/PaintingPage";
@@ -64,21 +65,7 @@ function Home() {
   return (
     <>
       <Hero />
-      <nav id="site-navigation" aria-label="Основная навигация" tabIndex={-1}>
-        <ul>
-          {[
-            ["about", "О художнице"],
-            ["projects", "Выставки"],
-            ["works", "Работы"],
-            ["news", "Новости"],
-            ["contacts", "Контакты"],
-          ].map(([id, title]) => (
-            <li key={id}>
-              <a href={`#${id}`}>{title}</a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <Navigation />
       <a
         className="mobile-navigation-link"
         href="#site-navigation"
