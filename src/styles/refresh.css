@@ -178,6 +178,56 @@ h2 {
 .contacts a {
   border-radius: 4px;
 }
+.mobile-navigation-link {
+  display: none;
+}
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 16px;
+  }
+  #site-navigation {
+    position: static;
+    box-shadow: none;
+    scroll-margin-top: 16px;
+  }
+  #site-navigation ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: visible;
+    gap: 4px 16px;
+    padding: 16px;
+  }
+  #site-navigation a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 0.9rem;
+  }
+  .mobile-navigation-link {
+    position: fixed;
+    right: calc(12px + env(safe-area-inset-right, 0px));
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    z-index: 110;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 44px;
+    padding: 10px 14px;
+    border: 1px solid #d9c5a6;
+    border-radius: 24px;
+    background: #fff5e3;
+    color: #713713;
+    box-shadow: 0 2px 12px rgb(0 0 0 / 0.15);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  footer {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+  }
+}
 .channel-intro {
   display: flex;
   align-items: flex-start;

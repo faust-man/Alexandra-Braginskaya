@@ -51,7 +51,7 @@ export function Carousel() {
             return (
               <article className="achievement-card" key={s[2]}>
                 <span className="achievement-index" aria-hidden="true">
-                  {s[2]} ↗
+                  {s[2]}
                 </span>
                 <h3>{s[0]}</h3>
                 <p>{s[1]}</p>

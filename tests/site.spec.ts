@@ -170,3 +170,36 @@ test("channel introduction and desktop-only motion", async ({
     await expect(image).not.toHaveAttribute("style", /--parallax-x/);
   }
 });
+
+test("mobile menu stays in the document and floating shortcut returns to it", async ({
+  page,
+  isMobile,
+}) => {
+  await page.goto("/");
+  const shortcut = page.getByRole("link", { name: "К навигации сайта" });
+  if (!isMobile) {
+    await expect(shortcut).toBeHidden();
+    return;
+  }
+  const nav = page.getByRole("navigation", { name: "Основная навигация" });
+  await expect(nav).toHaveCSS("position", "static");
+  await expect(nav.getByRole("link")).toHaveCount(5);
+  await nav.getByRole("link", { name: "Контакты", exact: true }).click();
+  await expect(page).toHaveURL(/#contacts/);
+  await expect(shortcut).toBeInViewport();
+  await expect(nav).not.toBeInViewport();
+  await shortcut.click();
+  await expect(page).toHaveURL(/#site-navigation/);
+  await expect(nav).toBeInViewport();
+  for (const width of [320, 390, 768]) {
+    await page.setViewportSize({ width, height: 844 });
+    expect(
+      await nav.evaluate((el) => el.scrollWidth <= el.clientWidth),
+    ).toBeTruthy();
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBeTruthy();
+  }
+});

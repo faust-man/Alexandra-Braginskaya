@@ -64,7 +64,7 @@ function Home() {
   return (
     <>
       <Hero />
-      <nav aria-label="Основная навигация">
+      <nav id="site-navigation" aria-label="Основная навигация" tabIndex={-1}>
         <ul>
           {[
             ["about", "О художнице"],
@@ -79,6 +79,24 @@ function Home() {
           ))}
         </ul>
       </nav>
+      <a
+        className="mobile-navigation-link"
+        href="#site-navigation"
+        aria-label="К навигации сайта"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          aria-hidden="true"
+        >
+          <path d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <span>Меню</span>
+      </a>
       <main>
         <Editorial section="about" />
         <Section id="projects" title="Выставки и достижения">
@@ -113,7 +131,7 @@ function Home() {
                     {String(index + 1).padStart(2, "0")} / Живопись
                   </span>
                   <h3>{work.title}</h3>
-                  <span className="work-details">Смотреть работу ↗</span>
+                  <span className="work-details">Смотреть работу</span>
                 </a>
               </article>
             ))}
@@ -144,7 +162,7 @@ function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Читать канал в Telegram ↗
+                Читать канал в Telegram
               </a>
             </div>
           </div>

@@ -31,7 +31,7 @@ export function Hero() {
         </h1>
         <p>Художник • Искусствовед • Участник международных выставок</p>
         <a href="#works" className="btn hero-cta">
-          Открыть галерею ↗
+          Открыть галерею
         </a>
       </div>
     </header>

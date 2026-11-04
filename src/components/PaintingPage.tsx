@@ -90,7 +90,7 @@ export function PaintingPage() {
               <p>{work.description}</p>
             </div>
             <a className="painting-contact" href="index.html#contacts">
-              Связаться с художницей ↗
+              Связаться с художницей
             </a>
           </div>
         </main>
