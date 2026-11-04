@@ -42,7 +42,7 @@ function Expandable({
   return (
     <>
       <div
-        id={kind}
+        id={`${kind}-items`}
         className={`${kind} ${expanded ? "expanded" : "collapsed"}`}
       >
         {children}
@@ -51,7 +51,7 @@ function Expandable({
         <button
           className="show-more-button"
           aria-expanded={expanded}
-          aria-controls={kind}
+          aria-controls={`${kind}-items`}
           onClick={() => setExpanded(!expanded)}
         >
           {expanded ? "Скрыть" : "Показать ещё"}
@@ -120,6 +120,34 @@ function Home() {
           </Expandable>
         </Section>
         <Section id="news" title="Новости">
+          <div className="channel-intro">
+            <img
+              src="img/channel-avatar.jpg"
+              alt="Александра Брагинская — автор канала Искусство&Торшер"
+              width="160"
+              height="160"
+              loading="lazy"
+            />
+            <div>
+              <h3>Искусство&amp;Торшер</h3>
+              <p>
+                В своем блоге «Искусство&amp;Торшер» я соединяю взгляд
+                искусствоведа и живой опыт художника. Здесь я делюсь рецензиями
+                на самые яркие выставки, помогая зрителю увидеть то, что скрыто
+                от беглого взгляда. А в рубрике о моём творчестве — показываю,
+                как рождаются картины: от первого эскиза до финального мазка.
+                Моя цель — влюбить вас в искусство так же сильно, как в него
+                влюблена я.
+              </p>
+              <a
+                href="https://t.me/artalexatorsher"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Читать канал в Telegram ↗
+              </a>
+            </div>
+          </div>
           <Expandable kind="news" count={news.length}>
             {news.map((item) => (
               <article className="news-card" key={item.id}>
@@ -133,15 +161,9 @@ function Home() {
                   }}
                 />
                 <div className="news-card-content">
-                  <time
-                    dateTime={
-                      /^\d{4}-\d{2}-\d{2}$/.test(item.date)
-                        ? item.date
-                        : undefined
-                    }
-                  >
-                    {formatDate(item.date)}
-                  </time>
+                  {formatDate(item.date) && (
+                    <time dateTime={item.date}>{formatDate(item.date)}</time>
+                  )}
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
                   {item.link && (

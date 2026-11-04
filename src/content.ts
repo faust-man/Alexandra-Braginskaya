@@ -24,7 +24,7 @@ const articles = import.meta.glob<Omit<News, "id">>(
   "../public/data/news/*.json",
   { eager: true, import: "default" },
 );
-export const paintings: Painting[] = ids.map((id) => ({
+export const paintings: Painting[] = [...ids].reverse().map((id) => ({
   ...works[`../public/data/${id}.json`],
   id,
 }));

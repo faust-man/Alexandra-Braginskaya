@@ -1,26 +1,29 @@
-import { useEffect, useRef } from "react";
-import { setupParallax } from "../hooks/parallax";
+import { useParallax } from "../hooks/useParallax";
 export function Hero() {
-  const ref = useRef<HTMLElement>(null);
-  useEffect(() => {
-    if (ref.current) return setupParallax(ref.current);
-  }, []);
+  const ref = useParallax();
   return (
     <header className="hero" ref={ref}>
       {[1, 2, 3, 4].map((n) => (
         <div className={`hero-layer layer-${n}`} key={n}>
-          <img
-            src={`img/layer-${n}.png`}
-            alt=""
-            loading="eager"
-            decoding="async"
-            fetchPriority={n === 1 ? "high" : "auto"}
-          />
+          <picture>
+            {n < 4 && (
+              <source
+                media="(min-width: 901px)"
+                srcSet={`img/hero-object-${n}.webp`}
+              />
+            )}
+            <img
+              src={`img/layer-${n}.png`}
+              alt=""
+              loading="eager"
+              decoding="async"
+              fetchPriority={n === 1 ? "high" : "auto"}
+            />
+          </picture>
         </div>
       ))}
       <div className="hero-overlay" />
       <div className="hero-content">
-        <span className="eyebrow">Современная живопись · Авторский взгляд</span>
         <h1>
           Александра
           <br />
@@ -30,15 +33,6 @@ export function Hero() {
         <a href="#works" className="btn hero-cta">
           Открыть галерею ↗
         </a>
-        <button
-          className="btn motion-permission-button"
-          id="motionPermissionButton"
-          type="button"
-          hidden
-        >
-          Включить движение фона
-        </button>
-        <p className="motion-status" id="motionStatus" role="status" hidden />
       </div>
     </header>
   );

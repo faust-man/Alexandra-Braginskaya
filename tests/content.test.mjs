@@ -11,7 +11,7 @@ test("all gallery and news entries have complete content and local assets", asyn
       "",
       ["title", "materials", "size", "price", "description"],
     ],
-    ["news.json", "news/", ["title", "date", "description"]],
+    ["news.json", "news/", ["title", "description"]],
   ]) {
     const ids = await json("../public/" + list);
     assert.equal(new Set(ids).size, ids.length);
@@ -34,7 +34,7 @@ test("all gallery and news entries have complete content and local assets", asyn
   }
 });
 test("dates handle malformed and impossible dates without inventing publication dates", () => {
-  assert.equal(formatDate("2026-30-1"), "Новости мастерской");
-  assert.equal(formatDate("2026-02-30"), "Новости мастерской");
+  assert.equal(formatDate("2026-30-1"), "");
+  assert.equal(formatDate("2026-02-30"), "");
   assert.match(formatDate("2026-01-30"), /30 января 2026/);
 });

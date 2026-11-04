@@ -15,6 +15,7 @@
 
   color: var(--white-text-color);
   text-align: center;
+  container-type: size;
 }
 
 /* =====================================================
@@ -57,35 +58,44 @@
   will-change: transform;
 }
 
-.motion-permission-button {
-  display: none;
-
-  margin: 22px auto 0;
-  padding: 12px 24px;
-
-  background-color: var(--background-color);
-
-  border: none;
-  border-radius: 50px;
-
-  color: var(--primary-color);
-
-  font: inherit;
-  font-weight: 700;
-
-  cursor: pointer;
-}
-
-.motion-status {
-  margin-top: 12px;
-
-  font-size: 0.9rem;
-}
-
-@media (max-width: 768px) {
-  .motion-permission-button {
-    display: block;
+/* Desktop objects have their transparent margins removed, allowing each
+   object to scale and move independently within the full-width scene. */
+@media (min-width: 901px) {
+  .hero-layer:not(.layer-4) img {
+    width: min(29cqw, 55cqh);
+    height: 76cqh;
+    min-height: 0;
+    --base-y: 0%;
   }
+  .hero .layer-1 img {
+    left: 81%;
+    bottom: -1px;
+    width: min(35cqw, 65cqh);
+    height: 94cqh;
+    object-position: center bottom;
+  }
+  .hero .layer-2 img {
+    left: 49%;
+    bottom: 15cqh;
+  }
+  .hero .layer-3 img {
+    left: 18%;
+    bottom: 12cqh;
+    height: 66cqh;
+  }
+}
+
+/* The background fills the header independently of the foreground canvas.
+   Overscan leaves room for the maximum 20px desktop parallax movement. */
+.hero .layer-4 img {
+  left: -24px;
+  top: -24px;
+  bottom: auto;
+  width: calc(100% + 48px);
+  height: calc(100% + 48px);
+  min-height: 0;
+  object-fit: cover;
+  transform: translate3d(var(--parallax-x), var(--parallax-y), 0);
 }
 
 [hidden] {

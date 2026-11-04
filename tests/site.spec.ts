@@ -12,7 +12,7 @@ test("home: content, navigation, assets and no runtime errors", async ({
   await page.goto("/");
   await expect(page.locator("h1")).toContainText("Александра");
   await expect(page.locator(".work")).toHaveCount(20);
-  await expect(page.locator(".news-card")).toHaveCount(6);
+  await expect(page.locator(".news-card")).toHaveCount(16);
   await page.getByRole("link", { name: "Работы", exact: true }).click();
   await expect(page).toHaveURL(/#works/);
   await expect(page.locator(".work:visible")).toHaveCount(isMobile ? 4 : 20);
@@ -22,7 +22,7 @@ test("home: content, navigation, assets and no runtime errors", async ({
     await page.locator("#works button").click();
     await expect(page.locator(".work:visible")).toHaveCount(4);
     await page.locator("#news button").click();
-    await expect(page.locator(".news-card:visible")).toHaveCount(6);
+    await expect(page.locator(".news-card:visible")).toHaveCount(16);
     await page.locator("#news button").click();
     await expect(page.locator(".news-card:visible")).toHaveCount(2);
   }
@@ -53,7 +53,7 @@ test("painting navigation, metadata, original and back", async ({
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/");
   await page.locator(".work a").first().click();
-  await expect(page).toHaveURL(/painting.html\?id=vremya_doroje_deneg/);
+  await expect(page).toHaveURL(/painting.html\?id=luchshie_podruzhki/);
   await expect(page.locator("h1")).not.toBeEmpty();
   await expect(page.locator(".info")).toContainText("Материал");
   const image = page.locator(".painting-image img");
@@ -141,5 +141,32 @@ test("visual captures and narrow screen layout", async ({ page }, testInfo) => {
         () => document.documentElement.scrollWidth <= innerWidth,
       ),
     ).toBeTruthy();
+  }
+});
+
+test("channel introduction and desktop-only motion", async ({
+  page,
+  isMobile,
+}) => {
+  await page.goto("/");
+  await expect(page.locator(".channel-intro")).toContainText(
+    "Искусство&Торшер",
+  );
+  await expect(page.locator("#motionPermissionButton")).toHaveCount(0);
+  await expect(page.locator(".eyebrow")).toHaveCount(0);
+  await expect(page.locator(".news-card time")).toHaveCount(0);
+  await expect(page.locator(".work a").first()).toHaveAttribute(
+    "href",
+    /id=luchshie_podruzhki/,
+  );
+  const image = page.locator(".layer-1 img");
+  await page.mouse.move(10, 10);
+  await page.mouse.move(300, 250);
+  if (isMobile) {
+    await expect(image).not.toHaveAttribute("style", /--parallax-x/);
+  } else {
+    await expect(image).toHaveAttribute("style", /--parallax-x/);
+    await page.setViewportSize({ width: 390, height: 844 });
+    await expect(image).not.toHaveAttribute("style", /--parallax-x/);
   }
 });

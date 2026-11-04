@@ -46,7 +46,19 @@ export function Editorial({ section }: { section: "about" | "contacts" }) {
           >
             Яндекс Дзен
           </a>
+          <a
+            href="https://www.instagram.com/artalexatorsher/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-describedby="instagram-note"
+          >
+            Instagram*
+          </a>
         </div>
+        <p id="instagram-note" className="social-note">
+          *Деятельность организации Meta Platforms Inc. по реализации социальной
+          сети Instagram признана экстремистской и запрещена на территории РФ.
+        </p>
       </div>
     </section>
   );

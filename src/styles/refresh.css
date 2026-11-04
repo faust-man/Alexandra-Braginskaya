@@ -61,6 +61,26 @@ button:focus-visible {
   background: #fff5e3;
   color: #713713;
 }
+@media (min-width: 901px) {
+  .hero {
+    max-height: none;
+  }
+  .hero-content {
+    max-width: min(82cqw, 1600px);
+  }
+  .hero-content h1 {
+    font-size: clamp(3.5rem, min(7cqw, 15cqh), 12rem);
+  }
+  .hero-content p {
+    max-width: 48cqw;
+    font-size: clamp(1rem, 1.15cqw, 2rem);
+    margin: clamp(24px, 3cqh, 48px) auto;
+  }
+  .hero-cta {
+    font-size: clamp(1rem, 1cqw, 1.5rem);
+    padding: clamp(16px, 2cqh, 28px) clamp(28px, 2.5cqw, 64px);
+  }
+}
 nav ul {
   gap: clamp(16px, 4vw, 56px);
 }
@@ -157,6 +177,62 @@ h2 {
 }
 .contacts a {
   border-radius: 4px;
+}
+.channel-intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  max-width: 960px;
+  margin: 0 auto 40px;
+}
+.channel-intro img {
+  flex: 0 0 160px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.channel-intro h3 {
+  margin: 0 0 16px;
+  font-family: Georgia, serif;
+  font-size: 1.6rem;
+}
+.channel-intro p {
+  margin: 0 0 16px;
+  line-height: 1.8;
+}
+.channel-intro a {
+  color: var(--primary-color);
+}
+.news-card > img {
+  width: 100%;
+  aspect-ratio: 8 / 5;
+  object-fit: cover;
+}
+.social-note {
+  max-width: 800px;
+  margin: 24px auto 0;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .channel-intro {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .channel-intro img {
+    flex-basis: auto;
+  }
+  .hero .layer-4 img {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: none;
+  }
+  .hero-layer img {
+    will-change: auto;
+  }
 }
 footer {
   background: #30372c;
