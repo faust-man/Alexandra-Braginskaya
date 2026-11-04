@@ -2,35 +2,16 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/paint-style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffefcd" />
+    <meta
+      name="description"
+      content="Живопись Александры Брагинской: избранные работы, выставки и новости."
+    />
+    <title>Картина | Александра Брагинская</title>
   </head>
   <body>
-    <a href="index.html" class="back">← Назад к галерее</a>
-    <div class="painting">
-      <div class="painting-image">
-        <img id="paintingImage" />
-        <div class="lens"></div>
-      </div>
-
-      <div class="painting-info">
-        <h1 id="title"></h1>
-
-        <div class="info">
-          <p><strong>Год:</strong> <span id="year"></span></p>
-          <p><strong>Материал:</strong> <span id="materials"></span></p>
-          <p><strong>Размер:</strong> <span id="size"></span></p>
-          <p><strong>Статус:</strong> <span id="price"></span></p>
-        </div>
-
-        <div class="description">
-          <h2>Описание</h2>
-          <p id="description"></p>
-        </div>
-      </div>
-    </div>
-    <script src="js/painting.js"></script>
-    <script src="js/lens.js"></script>
-    <script src="js/no-copy.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

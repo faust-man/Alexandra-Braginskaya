@@ -4,7 +4,7 @@ import { mkdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 
-const projectRoot = process.cwd();
+const projectRoot = path.join(process.cwd(), "public");
 
 const galleryPath = path.join(projectRoot, "gallery.json");
 const sourceDirectory = path.join(projectRoot, "img");
@@ -54,6 +54,7 @@ for (const id of paintingIds) {
     console.log(`Созданы превью: ${id}`);
   } catch (error) {
     console.error(`Ошибка обработки картины "${id}":`, error);
+    process.exitCode = 1;
   }
 }
 
