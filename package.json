@@ -14,8 +14,8 @@
     "test": "node --test tests/*.test.mjs",
     "test:e2e": "playwright test",
     "previews": "node scripts/generate-previews.mjs",
-    "format": "prettier --write src tests scripts *.ts *.json *.html *.yaml README.md",
-    "format:check": "prettier --check src tests scripts *.ts *.json *.html *.yaml README.md"
+    "format": "prettier --write src tests scripts *.ts *.json *.html *.yaml README.md public/image-cache-worker.js",
+    "format:check": "prettier --check src tests scripts *.ts *.json *.html *.yaml README.md public/image-cache-worker.js"
   },
   "dependencies": {
     "react": "^19.2.0",

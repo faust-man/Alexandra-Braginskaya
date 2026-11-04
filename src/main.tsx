@@ -1,3 +1,4 @@
+import { registerImageCache } from "./image-cache";
 import { useEffect, useState, type ReactNode } from "react";
 import { createRoot } from "react-dom/client";
 import { Editorial } from "./components/Editorial";
@@ -176,3 +177,5 @@ function App() {
   return painting ? <PaintingPage /> : <Home />;
 }
 createRoot(document.getElementById("root")!).render(<App />);
+
+registerImageCache();
