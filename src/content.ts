@@ -24,7 +24,10 @@ const articles = import.meta.glob<Omit<News, "id">>(
   "../public/data/news/*.json",
   { eager: true, import: "default" },
 );
-export const paintings: Painting[] = [...ids].reverse().map((id) => ({
+// Keep the four recent additions first, followed by the previous gallery order.
+const recentIds = ids.slice(-4).reverse();
+const orderedIds = [...recentIds, ...ids.slice(0, -4)];
+export const paintings: Painting[] = orderedIds.map((id) => ({
   ...works[`../public/data/${id}.json`],
   id,
 }));

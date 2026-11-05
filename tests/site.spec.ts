@@ -203,3 +203,39 @@ test("mobile menu stays in the document and floating shortcut returns to it", as
     ).toBeTruthy();
   }
 });
+
+test("client revisions: gallery order, prices and contact destination", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const ids = await (await page.request.get("/gallery.json")).json();
+  const expected = [...ids.slice(-4).reverse(), ...ids.slice(0, -4)];
+  expect(
+    await page
+      .locator(".work a")
+      .evaluateAll((links) =>
+        links.map((link) =>
+          new URL((link as HTMLAnchorElement).href).searchParams.get("id"),
+        ),
+      ),
+  ).toEqual(expected);
+  await expect(page.locator(".work-number")).toHaveCount(0);
+  await expect(page.locator(".footer-note")).toHaveCount(0);
+  await expect(page.locator(".section-intro")).not.toContainText(
+    "Истории, рассказанные цветом",
+  );
+  for (const [id, price] of [
+    ["luchshie_podruzhki", "5 000 руб."],
+    ["neizvestnaya", "20 000 руб."],
+    ["soyuz_vody_i_lesa", "23 000 руб."],
+    ["mudraya_dobychitca", "25 000 руб."],
+  ]) {
+    await page.goto(`/painting.html?id=${id}`);
+    await expect(page.locator(".eyebrow")).toHaveCount(0);
+    await expect(page.locator(".info p").last()).toHaveText(`Цена: ${price}`);
+  }
+  await page.getByRole("link", { name: "Связаться с художницей" }).click();
+  await expect(page).toHaveURL(/index.html#contacts/);
+  await expect(page.locator("#contacts")).toBeInViewport();
+  await expect(page.locator("#contacts a").first()).toBeInViewport();
+});

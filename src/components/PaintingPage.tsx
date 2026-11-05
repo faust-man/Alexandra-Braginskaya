@@ -73,7 +73,6 @@ export function PaintingPage() {
             <div className="lens" style={lens} aria-hidden="true" />
           </div>
           <div className="painting-info">
-            <span className="eyebrow">Из авторской коллекции</span>
             <h1>{work.title}</h1>
             <div className="info">
               {[

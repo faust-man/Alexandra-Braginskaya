@@ -1,5 +1,5 @@
 import { registerImageCache } from "./image-cache";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useState, type ReactNode } from "react";
 import { createRoot } from "react-dom/client";
 import { Editorial } from "./components/Editorial";
 import { Navigation } from "./components/Navigation";
@@ -62,6 +62,16 @@ function Expandable({
   );
 }
 function Home() {
+  useLayoutEffect(() => {
+    const target = document.getElementById(
+      decodeURIComponent(location.hash.slice(1)),
+    );
+    if (!target) return;
+    const frame = requestAnimationFrame(() =>
+      target.scrollIntoView({ behavior: "instant" }),
+    );
+    return () => cancelAnimationFrame(frame);
+  }, []);
   return (
     <>
       <Hero />
@@ -91,8 +101,7 @@ function Home() {
         </Section>
         <Section id="works" title="Избранные работы">
           <p className="section-intro">
-            Истории, рассказанные цветом. Нажмите на картину, чтобы узнать её
-            ближе.
+            Нажмите на работу, чтобы узнать её ближе.
           </p>
           <Expandable kind="gallery" count={paintings.length}>
             {paintings.map((work, index) => (
@@ -114,9 +123,6 @@ function Home() {
                       }
                     }}
                   />
-                  <span className="work-number">
-                    {String(index + 1).padStart(2, "0")} / Живопись
-                  </span>
                   <h3>{work.title}</h3>
                   <span className="work-details">Смотреть работу</span>
                 </a>
@@ -189,7 +195,6 @@ function Home() {
       </main>
       <footer>
         <p>© 2026 Александра Брагинская</p>
-        <p className="footer-note">Искусство видеть необычное</p>
       </footer>
     </>
   );
