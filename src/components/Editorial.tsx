@@ -40,6 +40,15 @@ export function Editorial({ section }: { section: "about" | "contacts" }) {
           </a>
 
           <a
+            href="https://wa.me/79859390221"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-describedby="whatsapp-note"
+          >
+            WhatsApp**
+          </a>
+
+          <a
             href="https://dzen.ru/a/aH1S5kycwwCSteDz"
             target="_blank"
             rel="noopener noreferrer"
@@ -58,6 +67,9 @@ export function Editorial({ section }: { section: "about" | "contacts" }) {
         <p id="instagram-note" className="social-note">
           *Деятельность организации Meta Platforms Inc. по реализации социальной
           сети Instagram признана экстремистской и запрещена на территории РФ.
+        </p>
+        <p id="whatsapp-note" className="social-note">
+          **WhatsApp принадлежит компании Meta Platforms Inc.
         </p>
       </div>
     </section>
